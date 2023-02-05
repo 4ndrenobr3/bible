@@ -13,7 +13,7 @@ class VersionControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_can_list_all_versions()
     {
         $response = $this->get('/api/versions');
 
