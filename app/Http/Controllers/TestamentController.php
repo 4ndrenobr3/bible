@@ -14,7 +14,8 @@ class TestamentController extends Controller
      */
     public function index()
     {
-        //
+        $testaments = Testament::all();
+        return response()->json($testaments);
     }
 
     /**
