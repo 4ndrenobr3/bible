@@ -14,7 +14,8 @@ class VersionController extends Controller
      */
     public function index()
     {
-        //
+        $versions = Version::all();
+        return response()->json($versions);
     }
 
     /**
