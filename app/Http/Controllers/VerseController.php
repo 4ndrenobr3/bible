@@ -12,9 +12,10 @@ class VerseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(int $book)
     {
-        //
+        $verses = Verse::where('book_id', $book)->get();
+        return response()->json($verses);
     }
 
     /**
