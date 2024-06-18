@@ -2,9 +2,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Book;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class BookControllerTest extends TestCase
 {
@@ -17,6 +18,13 @@ class BookControllerTest extends TestCase
      */
     public function test_can_list_all_books()
     {
+        $book = Book::factory()->create([
+            "name"          => "Gênesis",
+            "abbreviation"  => "gn",
+            "position"      => 1,
+            "testament_id"  => 1
+        ]);
+
         $response = $this->get('/api/books');
 
         $response->assertStatus(200);
@@ -27,8 +35,6 @@ class BookControllerTest extends TestCase
                 "position"      => 1,
                 "name"          => "Gênesis",
                 "abbreviation"  => "gn",
-                "created_at"    => null,
-                "updated_at"    => null
             ]
         ]);
     }
