@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Testament;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -17,6 +18,10 @@ class TestamentControllerTest extends TestCase
      */
     public function test_can_show_all_testaments()
     {
+        Testament::factory()->create([
+            'name' => 'Antigo Testamento', 
+        ]);
+
         $response = $this->get('/api/testaments');
 
         $response->assertStatus(200);
@@ -24,8 +29,6 @@ class TestamentControllerTest extends TestCase
             [
                 "id" => 1,
                 "name" => "Antigo Testamento",
-                "created_at" => null,
-                "updated_at" => null
             ]
         ]);
     }
