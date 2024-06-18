@@ -2,9 +2,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Version;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class VersionControllerTest extends TestCase
 {
@@ -17,17 +18,17 @@ class VersionControllerTest extends TestCase
      */
     public function test_can_list_all_versions()
     {
+        $version = Version::factory()->create([
+            'name' => '1993 - Almeida Revisada e Atualizada',
+        ]);
+        
         $response = $this->get('/api/versions');
-
-
 
         $response->assertStatus(200);
         $response->assertJson([
             [
                 "id"        => 1,
                 "name"      => "1993 - Almeida Revisada e Atualizada",
-                "created_at"=> null,
-                "updated_at"=> null
             ]
         ]);
     }
