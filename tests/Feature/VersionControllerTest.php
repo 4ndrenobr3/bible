@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 class VersionControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -16,6 +18,8 @@ class VersionControllerTest extends TestCase
     public function test_can_list_all_versions()
     {
         $response = $this->get('/api/versions');
+
+
 
         $response->assertStatus(200);
         $response->assertJson([
